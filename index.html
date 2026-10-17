@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanad Insurance Brokers</title>
+<meta name="description" content="Sanad Insurance Brokers is an independent insurance broker in Amman, Jordan, established in 2011. We place personal and corporate insurance with insurers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,480;6..72,560&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #00274c;
+    --navy-deep: #001833;
+    --blue: #009ddc;
+    --link: #0a6f96;
+    --ink: #142033;
+    --muted: #3c4c5c;
+    --line: #d9e1e8;
+    --paper: #f5f7f9;
+    --white: #fff;
+    --max: 1200px;
+    --header: 76px;
+    --space: 88px;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--white);
+    font-family: Manrope, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus { outline: none; }
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+  .skip {
+    position: absolute; left: 12px; top: -48px; background: var(--navy); color: #fff;
+    padding: 8px 12px; z-index: 80;
+  }
+  .skip:focus { top: 8px; }
+  .wrap { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+
+  .util { background: var(--navy-deep); color: #fff; font-size: 14px; }
+  .util-inner {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .util a { color: #fff; text-decoration: none; font-weight: 600; }
+  .util a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .util-left, .util-right { display: flex; align-items: center; gap: 18px; }
+  .util .dot { width: 3px; height: 3px; background: rgba(255,255,255,.45); border-radius: 50%; }
+  .claims-link { letter-spacing: .01em; }
+
+  .site-header {
+    position: sticky; top: 0; z-index: 40;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+    min-height: var(--header);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .brand { display: flex; align-items: center; margin-right: auto; text-decoration: none; }
+  .brand-name { display: flex; flex-direction: column; line-height: 1; }
+  .brand-name strong {
+    font-size: 22px; letter-spacing: .18em; font-weight: 700; color: var(--navy);
+  }
+  .brand-name small {
+    margin-top: 5px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600;
+  }
+  .menu { display: flex; align-items: center; gap: 2px; list-style: none; margin: 0; padding: 0; }
+  .menu > li { position: relative; }
+  .menu > li > a, .menu > li > button.nav-link {
+    display: flex; align-items: center; min-height: 44px;
+    background: none; border: 0; cursor: pointer;
+    padding: 0 11px; color: var(--navy); font-weight: 600; font-size: 15px; text-decoration: none;
+  }
+  .menu > li > a:hover, .menu > li > button.nav-link:hover { color: var(--link); }
+  .sub {
+    display: none; position: absolute; top: calc(100% - 4px); left: 0; min-width: 240px;
+    background: #fff; border: 1px solid var(--line); padding: 6px; z-index: 5;
+  }
+  .menu > li:hover .sub, .menu > li:focus-within .sub, .menu > li.is-open .sub { display: block; }
+  .sub a { display: block; padding: 9px 10px; font-size: 15px; color: var(--ink); text-decoration: none; }
+  .sub a:hover { background: var(--paper); color: var(--navy); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: 0 18px; border: 1px solid transparent;
+    font-weight: 700; font-size: 15px; cursor: pointer; text-decoration: none; line-height: 1.2;
+  }
+  .btn-navy { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .btn-navy:hover { background: #01386e; }
+  .btn-white { background: #fff; color: var(--navy); border-color: #fff; }
+  .btn-white:hover { background: var(--paper); }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.75); }
+  .btn-ghost:hover { background: #fff; color: var(--navy); }
+  .menu-toggle {
+    display: none; margin-left: 8px; border: 1px solid var(--line); background: #fff; color: var(--navy);
+    min-width: 44px; min-height: 44px; padding: 0 12px; font-weight: 700; font-size: 14px; cursor: pointer;
+  }
+  .menu-contact { display: none; }
+
+  .hero {
+    position: relative;
+    color: #fff;
+    background:
+      linear-gradient(100deg, rgba(0,16,36,.9) 0%, rgba(0,28,58,.72) 46%, rgba(0,39,76,.28) 100%),
+      url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=70") 68% 28% / cover no-repeat;
+  }
+  .hero-inner { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; padding: 72px 0 76px; }
+  .eyebrow {
+    margin: 0;
+    color: #7fd4f3;
+    font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+  }
+  .hero h1 {
+    margin: 14px 0 0;
+    max-width: 10ch;
+    font-family: Newsreader, Georgia, serif;
+    font-weight: 480;
+    font-size: clamp(46px, 5.4vw, 72px);
+    line-height: .96;
+    letter-spacing: -.03em;
+  }
+  .hero .lede {
+    max-width: 38rem; margin: 22px 0 0; font-size: 18px; line-height: 1.55; color: rgba(255,255,255,.92);
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .hero :focus-visible, .footer :focus-visible, .talk :focus-visible, .util :focus-visible { outline-color: #fff; }
+
+  .trust { border-bottom: 1px solid var(--line); background: #fff; }
+  .trust ul {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto; padding: 0; list-style: none;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+  }
+  .trust li {
+    padding: 22px 20px; border-left: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .trust li:first-child { border-left: 0; padding-left: 0; }
+  .trust span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--link); }
+  .trust strong { font-weight: 700; color: var(--navy); font-size: 16px; }
+
+  section { padding: var(--space) 0; }
+  .kicker {
+    margin: 0 0 8px; color: var(--link); font-weight: 700; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  }
+  h2 {
+    margin: 0;
+    font-family: Newsreader, Georgia, serif;
+    font-weight: 480; letter-spacing: -.02em; color: var(--navy);
+    font-size: clamp(32px, 3.6vw, 46px); line-height: 1.08;
+  }
+  .section-intro { max-width: 40rem; margin: 14px 0 0; color: var(--muted); }
+
+  .lines { background: var(--paper); }
+  .line-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 36px; }
+  .line-card { background: #fff; border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .line-card img { width: 100%; height: 240px; object-fit: cover; }
+  .line-card img.home { object-position: center 60%; }
+  .line-card img.office { object-position: center 40%; }
+  .line-body { padding: 28px 28px 24px; display: flex; flex-direction: column; flex: 1; }
+  .line-body h3 {
+    margin: 0; font-size: 30px; font-family: Newsreader, Georgia, serif; font-weight: 560; color: var(--navy); letter-spacing: -.02em;
+  }
+  .line-body > p { margin: 10px 0 0; color: var(--muted); }
+  .services { list-style: none; margin: 22px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .services a {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    min-height: 48px; padding: 8px 0; border-bottom: 1px solid var(--line);
+    color: var(--navy); font-weight: 600; text-decoration: none; font-size: 16px;
+  }
+  .services a::after { content: "→"; color: var(--link); font-weight: 500; }
+  .services a:hover { color: var(--link); }
+
+  .sector-list { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  .sector-list li { display: grid; grid-template-columns: 128px 1fr; gap: 16px; align-items: center; padding: 18px 0; border-top: 1px solid var(--line); }
+  .sector-list img { width: 128px; height: 86px; object-fit: cover; }
+  .sector-list h3 { margin: 0; font-size: 18px; color: var(--navy); }
+  .sector-list p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+
+  .why-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 56px; align-items: start; }
+  .why-grid .section-intro { margin-top: 16px; }
+  .why-list { border-top: 1px solid var(--line); }
+  .why-item { display: grid; grid-template-columns: 48px 1fr; gap: 8px 16px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .why-item b { color: var(--link); font-family: Newsreader, Georgia, serif; font-size: 22px; font-weight: 560; }
+  .why-item h3 { margin: 0 0 6px; font-size: 20px; color: var(--navy); font-weight: 700; }
+  .why-item p { margin: 0; color: var(--muted); }
+
+  .notes { padding-top: 0; }
+  .note-list { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .note-list li { padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--navy); font-weight: 600; font-size: 18px; }
+
+  .claims-panel {
+    display: grid; grid-template-columns: 1.4fr .8fr; gap: 32px; align-items: center;
+    border: 1px solid var(--line); border-left: 3px solid var(--navy); padding: 36px 32px; background: var(--paper);
+  }
+  .claims-panel p { margin: 12px 0 0; color: var(--muted); max-width: 42rem; }
+  .claims-actions { display: grid; gap: 12px; justify-items: start; }
+  .claims-actions a.mail { color: var(--link); font-weight: 700; }
+
+  .talk { background: var(--navy); color: #fff; }
+  .talk h2, .talk h3 { color: #fff; }
+  .talk .kicker { color: #7fd4f3; }
+  .talk-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+  .talk-copy p { color: rgba(255,255,255,.9); max-width: 36rem; }
+  .contact-rows { margin-top: 8px; }
+  .contact-rows a {
+    display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: baseline;
+    border-bottom: 1px solid rgba(255,255,255,.18); padding: 12px 0; color: #fff; text-decoration: none; font-weight: 600;
+  }
+  .contact-rows a span:first-child { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: #7fd4f3; }
+  .contact-rows a:hover span:last-child { text-decoration: underline; text-underline-offset: 3px; }
+  .form {
+    background: #fff; color: var(--ink); padding: 28px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px;
+  }
+  .form h3 { grid-column: 1 / -1; margin: 0; color: var(--navy); font-family: Newsreader, Georgia, serif; font-weight: 560; font-size: 28px; }
+  .form .hint { grid-column: 1 / -1; margin: -6px 0 0; color: var(--muted); font-size: 14px; }
+  .field { display: grid; gap: 6px; align-content: start; }
+  .field.full { grid-column: 1 / -1; }
+  .field > span, fieldset legend {
+    font-size: 14px; font-weight: 700; color: var(--navy);
+  }
+  .opt { font-weight: 600; color: var(--muted); }
+  .req { font-weight: 700; color: #8d1d1d; }
+  .form input, .form select, .form textarea {
+    width: 100%; border: 1px solid #c5d0da; background: #fff; min-height: 48px; padding: 10px 12px;
+  }
+  .form textarea { min-height: 120px; resize: vertical; }
+  .form input:focus-visible, .form select:focus-visible, .form textarea:focus-visible { outline-color: var(--link); }
+  .form input[aria-invalid="true"], .form select[aria-invalid="true"], .form textarea[aria-invalid="true"] { border-color: #8d1d1d; }
+  fieldset { border: 0; margin: 0; padding: 0; }
+  .choice { display: flex; flex-wrap: wrap; gap: 18px; min-height: 48px; align-items: center; }
+  .choice label { display: inline-flex; gap: 8px; align-items: center; font-weight: 600; color: var(--navy); min-height: 44px; cursor: pointer; }
+  .choice input {
+    appearance: none; width: 20px; height: 20px; min-height: 20px; padding: 0; border: 1.5px solid var(--navy); border-radius: 50%;
+    display: grid; place-items: center; background: #fff;
+  }
+  .choice input:checked { border-color: var(--navy); }
+  .choice input:checked::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--navy); }
+  .form .btn { grid-column: 1 / -1; justify-self: start; min-width: 200px; }
+  .fine { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--muted); font-weight: 500; }
+  .hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+  .form-status {
+    grid-column: 1 / -1; margin: 0; padding: 12px 14px;
+    border: 1px solid #8a5a00; background: #fbf6ee; color: #3d2e12; font-size: 15px;
+  }
+  .field-error { margin: 0; color: #8d1d1d; font-size: 13px; font-weight: 600; }
+
+  .footer { background: var(--navy-deep); color: rgba(255,255,255,.9); padding: 64px 0 28px; font-size: 15px; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .footer h2 { color: #fff; font-family: Manrope, sans-serif; font-size: 13px; letter-spacing: .14em; font-weight: 700; margin: 0 0 12px; }
+  .footer a { display: block; padding: 4px 0; color: #fff; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .footer p { margin: 0; max-width: 34ch; }
+  .legal {
+    margin-top: 36px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.16);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,.75);
+  }
+
+  .chat-launcher {
+    position: fixed; right: 20px; bottom: 20px; z-index: 50;
+    background: var(--navy); color: #fff; border: 0; min-height: 48px; padding: 0 16px;
+    font-weight: 700; cursor: pointer;
+  }
+  .chat-panel {
+    position: fixed; right: 20px; bottom: 78px; z-index: 50; width: min(340px, calc(100% - 32px));
+    background: #fff; border: 1px solid var(--line); display: none;
+  }
+  .chat-panel.open { display: block; }
+  .chat-panel header { background: var(--navy); color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
+  .chat-panel header button { background: none; border: 0; color: #fff; font-size: 22px; cursor: pointer; min-width: 44px; min-height: 44px; }
+  .chat-panel .body { padding: 16px; color: var(--muted); font-size: 15px; }
+  .chat-panel .body a { color: var(--link); font-weight: 700; }
+  .dock { display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; background: #fff; border-top: 1px solid var(--line); }
+  .dock a { flex: 1; text-align: center; padding: 14px 8px; font-weight: 700; color: var(--navy); text-decoration: none; min-height: 48px; }
+  .dock a + a { border-left: 1px solid var(--line); }
+
+  @media (max-width: 1024px) {
+    .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    .nav { position: relative; }
+    .nav > .btn-navy { display: none; }
+    .menu {
+      display: none; position: absolute; left: 0; right: 0; top: 100%;
+      background: #fff; border-bottom: 1px solid var(--line);
+      flex-direction: column; align-items: stretch; padding: 8px 20px 20px; gap: 0;
+      max-height: calc(100vh - 120px); overflow: auto;
+    }
+    .menu.open { display: flex; }
+    .menu > li > a, .menu > li > button.nav-link { width: 100%; justify-content: space-between; padding: 0; }
+    .sub { position: static; display: none; border: 0; padding: 0 0 8px 12px; min-width: 0; }
+    .menu > li.is-open .sub, .menu > li:focus-within .sub { display: block; }
+    .menu > li:hover .sub { display: none; }
+    .menu > li.is-open:hover .sub, .menu > li:focus-within .sub { display: block; }
+    .menu-contact { display: grid; gap: 4px; padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--line); }
+    .menu-contact a { font-weight: 700; color: var(--navy); text-decoration: none; min-height: 44px; display: flex; align-items: center; }
+    .menu-contact a.btn { color: #fff; background: var(--navy); justify-content: center; margin-top: 8px; }
+    .line-grid, .why-grid, .talk-grid, .claims-panel, .foot-grid { grid-template-columns: 1fr 1fr; }
+    .why-grid, .talk-grid, .foot-grid { grid-template-columns: 1fr; }
+    .claims-panel { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    :root { --space: 56px; }
+    .wrap, .util-inner, .nav, .hero-inner, .trust ul { width: calc(100% - 32px); }
+    .trust ul, .line-grid, .sector-list, .form { grid-template-columns: 1fr; }
+    .trust li, .trust li:first-child { border-left: 0; border-top: 1px solid var(--line); padding: 16px 0; }
+    .trust li:first-child { border-top: 0; }
+    .hero-inner { padding: 48px 0 52px; }
+    .line-body, .claims-panel, .form { padding: 22px; }
+    .dock { display: flex; }
+    .chat-launcher { bottom: 72px; }
+    .chat-panel { bottom: 128px; }
+    body { padding-bottom: 56px; }
+    .util-right .place { display: none; }
+  }
+  @media (max-width: 390px) {
+    .hero h1 { font-size: 42px; }
+    .hero-actions .btn { width: 100%; }
+    .sector-list li { grid-template-columns: 96px 1fr; }
+    .sector-list img { width: 96px; height: 72px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="util">
+  <div class="util-inner">
+    <div class="util-left">
+      <a href="tel:+96264645002">+962 6 464 5002</a>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="place">Amman, Jordan</span>
+    </div>
+    <div class="util-right">
+      <a class="claims-link" href="#claims">Claims assistance</a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-name">
+        <strong>SANAD</strong>
+        <small>Insurance Brokers</small>
+      </span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul class="menu" id="menu">
+      <li><a href="#about">About</a></li>
+      <li>
+        <button class="nav-link" type="button" aria-expanded="false" aria-controls="personal-menu">Personal</button>
+        <div class="sub" id="personal-menu">
+          <a href="#personal">Overview</a>
+          <a href="#talk" data-client="personal" data-cover="Home">Home</a>
+          <a href="#talk" data-client="personal" data-cover="Medical">Medical</a>
+          <a href="#talk" data-client="personal" data-cover="Motor">Motor</a>
+          <a href="#talk" data-client="personal" data-cover="Travel">Travel</a>
+          <a href="#talk" data-client="personal" data-cover="Life">Life</a>
+        </div>
+      </li>
+      <li>
+        <button class="nav-link" type="button" aria-expanded="false" aria-controls="corporate-menu">Corporate</button>
+        <div class="sub" id="corporate-menu">
+          <a href="#corporate">Overview</a>
+          <a href="#talk" data-client="corporate" data-cover="Property">Property</a>
+          <a href="#talk" data-client="corporate" data-cover="Marine">Marine</a>
+          <a href="#talk" data-client="corporate" data-cover="Group medical">Group medical</a>
+          <a href="#talk" data-client="corporate" data-cover="Motor fleet">Motor fleet</a>
+          <a href="#talk" data-client="corporate" data-cover="Engineering (CAR/EAR)">Engineering (CAR/EAR)</a>
+          <a href="#talk" data-client="corporate" data-cover="Liability">Liability</a>
+          <a href="#talk" data-client="corporate" data-cover="Fidelity guarantee">Fidelity guarantee</a>
+        </div>
+      </li>
+      <li><a href="#sectors">Sectors</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#talk">Contact</a></li>
+      <li class="menu-contact">
+        <a href="#claims">Claims assistance</a>
+        <a href="tel:+96264645002">Call +962 6 464 5002</a>
+        <a href="mailto:info@sanadib.com">info@sanadib.com</a>
+        <a class="btn btn-navy" href="#talk">Request a Quote</a>
+      </li>
+    </ul>
+    <a class="btn btn-navy" href="#talk">Request a Quote</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="eyebrow">Independent broker · Amman</p>
+      <h1>Cover placed<br>with care.</h1>
+      <p class="lede">Sanad is an independent insurance broker for individuals and businesses in Jordan. We arrange personal and corporate cover with insurers, explain the terms, and help you notify a claim if you need to.</p>
+      <div class="hero-actions">
+        <a class="btn btn-white" href="#talk">Request a Quote</a>
+        <a class="btn btn-ghost" href="tel:+96264645002">Speak to an Advisor</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <ul>
+      <li><span>Established</span><strong>2011</strong></li>
+      <li><span>Office</span><strong>Amman, Jordan</strong></li>
+      <li><span>Membership</span><strong>Jordan Insurance Brokers Association</strong></li>
+    </ul>
+  </div>
+
+  <section class="lines" id="cover">
+    <div class="wrap">
+      <p class="kicker">Insurance</p>
+      <h2>Personal and corporate cover.</h2>
+      <p class="section-intro">Tell us whether the policy is for a household or a company. We will ask which cover you need and come back with options from insurers.</p>
+      <div class="line-grid">
+        <article class="line-card" id="personal">
+          <img class="home" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=70" alt="A two-storey house with large windows, photographed in daylight" width="1400" height="933">
+          <div class="line-body">
+            <p class="kicker">Individuals and families</p>
+            <h3>Personal insurance</h3>
+            <p>Cover for the home, health, car, travel, and life.</p>
+            <ul class="services">
+              <li><a href="#talk" data-client="personal" data-cover="Home">Home</a></li>
+              <li><a href="#talk" data-client="personal" data-cover="Medical">Medical</a></li>
+              <li><a href="#talk" data-client="personal" data-cover="Motor">Motor</a></li>
+              <li><a href="#talk" data-client="personal" data-cover="Travel">Travel</a></li>
+              <li><a href="#talk" data-client="personal" data-cover="Life">Life</a></li>
+            </ul>
+          </div>
+        </article>
+        <article class="line-card" id="corporate">
+          <img class="office" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=70" alt="An open office with desks and large windows" width="1400" height="933">
+          <div class="line-body">
+            <p class="kicker">Companies</p>
+            <h3>Corporate insurance</h3>
+            <p>Cover for property, people, vehicles, cargo, and liability.</p>
+            <ul class="services">
+              <li><a href="#talk" data-client="corporate" data-cover="Property">Property</a></li>
+              <li><a href="#talk" data-client="corporate" data-cover="Marine">Marine</a></li>
+              <li><a href="#talk" data-client="corporate" data-cover="Group medical">Group medical</a></li>
+              <li><a href="#talk" data-client="corporate" data-cover="Motor fleet">Motor fleet</a></li>
+              <li><a href="#talk" data-client="corporate" data-cover="Engineering (CAR/EAR)">Engineering (CAR/EAR)</a></li>
+              <li><a href="#talk" data-client="corporate" data-cover="Liability">Liability</a></li>
+              <li><a href="#talk" data-client="corporate" data-cover="Fidelity guarantee">Fidelity guarantee</a></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="sectors">
+    <div class="wrap">
+      <p class="kicker">Sectors</p>
+      <h2>Businesses we arrange cover for.</h2>
+      <p class="section-intro">We arrange cover for organisations in construction, trade, healthcare, professional services, transport, and industry.</p>
+      <ul class="sector-list">
+        <li>
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=70" alt="A person reviewing architectural drawings on a desk" width="400" height="267">
+          <div><h3>Construction</h3><p>Sites, contracts, and the people working on them.</p></div>
+        </li>
+        <li>
+          <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=400&q=70" alt="A container ship docked beside port cranes" width="400" height="267">
+          <div><h3>Trade and logistics</h3><p>Goods, storage, and movement between places.</p></div>
+        </li>
+        <li>
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=400&q=70" alt="An empty hospital corridor with a reception desk" width="400" height="267">
+          <div><h3>Healthcare</h3><p>Clinics and practices that need medical and liability cover.</p></div>
+        </li>
+        <li>
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=400&q=70" alt="Colleagues working together around laptops" width="400" height="267">
+          <div><h3>Professional services</h3><p>Offices whose main risk sits in the work they give advice on.</p></div>
+        </li>
+        <li>
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=400&q=70" alt="A driver holding a steering wheel on a road at dusk" width="400" height="267">
+          <div><h3>Transport</h3><p>Vehicles used to move people or goods.</p></div>
+        </li>
+        <li>
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=70" alt="An engineer wearing protective eyewear in a workshop" width="400" height="267">
+          <div><h3>Industry</h3><p>Workshops and plants with equipment and premises to insure.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why" id="about">
+    <div class="wrap why-grid">
+      <div>
+        <p class="kicker">Why Sanad</p>
+        <h2>A broker, not an insurer.</h2>
+        <p class="section-intro">We place cover with insurers. We do not pay claims ourselves. The useful part of that is practical: a second pair of eyes on the cover, the wording, and the first call after a loss.</p>
+      </div>
+      <div class="why-list">
+        <div class="why-item">
+          <b>01</b>
+          <div>
+            <h3>Help comparing suitable cover</h3>
+            <p>We ask what you need to protect, then approach insurers for cover that fits. You are not limited to one company’s product.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <b>02</b>
+          <div>
+            <h3>Clearer policy terms</h3>
+            <p>Before you decide, we explain what is included, what is left out, and which conditions matter.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <b>03</b>
+          <div>
+            <h3>Guidance when a claim happens</h3>
+            <p>We help you notify the insurer and follow the file. The insurer decides whether a claim is paid.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="notes" id="news">
+    <div class="wrap">
+      <p class="kicker">News and insights</p>
+      <h2>Questions clients ask.</h2>
+      <ul class="note-list">
+        <li>What to check before renewing a motor policy</li>
+        <li>What to clarify before arranging group medical cover</li>
+        <li>What cargo cover is for when goods are in transit</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="claims">
+    <div class="wrap">
+      <div class="claims-panel">
+        <div>
+          <p class="kicker">Claims</p>
+          <h2>Need help with a claim?</h2>
+          <p>Call the Amman office. Have your policy number and a short description of what happened if you can. We will help you notify the insurer.</p>
+        </div>
+        <div class="claims-actions">
+          <a class="btn btn-navy" href="tel:+96264645002">Get Claims Assistance</a>
+          <a class="mail" href="mailto:info@sanadib.com">Or email info@sanadib.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="talk" id="talk">
+    <div class="wrap talk-grid">
+      <div class="talk-copy">
+        <p class="kicker">Talk to us</p>
+        <h2>Request a quote or ask an advisor to call.</h2>
+        <p>Share a few details and we will reply about the cover you asked for. If you would rather speak first, call or send a WhatsApp message.</p>
+        <div class="contact-rows">
+          <a href="tel:+96264645002"><span>Call</span><span>+962 6 464 5002</span></a>
+          <a href="mailto:info@sanadib.com"><span>Email</span><span>info@sanadib.com</span></a>
+          <a href="https://wa.me/96264645002" target="_blank" rel="noopener"><span>WhatsApp</span><span>Message the office</span></a>
+          <a href="https://maps.google.com/?q=Jordan+Insurance+Building+Al-Sharq+Street+Amman" target="_blank" rel="noopener"><span>Visit</span><span>Jordan Insurance Building, 6th floor, Al-Sharq Street, Amman</span></a>
+        </div>
+      </div>
+      <form class="form" id="lead-form" action="#" method="post" novalidate>
+        <h3>Request a quote</h3>
+        <p class="hint">Fields marked required must be filled in. The others are optional.</p>
+        <label class="field">
+          <span>Name <abbr class="req" title="required">*</abbr></span>
+          <input id="name" name="name" required autocomplete="name" aria-describedby="name-error">
+          <p class="field-error" id="name-error" hidden></p>
+        </label>
+        <label class="field">
+          <span>Phone <abbr class="req" title="required">*</abbr></span>
+          <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="phone-error">
+          <p class="field-error" id="phone-error" hidden></p>
+        </label>
+        <label class="field">
+          <span>Email <abbr class="req" title="required">*</abbr></span>
+          <input id="email" name="email" type="email" required autocomplete="email" aria-describedby="email-error">
+          <p class="field-error" id="email-error" hidden></p>
+        </label>
+        <label class="field">
+          <span>Insurance type <abbr class="req" title="required">*</abbr></span>
+          <select id="insurance_type" name="insurance_type" required aria-describedby="type-error">
+            <option value="">Select</option>
+            <option>Home</option><option>Medical</option><option>Motor</option><option>Travel</option><option>Life</option>
+            <option>Property</option><option>Marine</option><option>Group medical</option><option>Motor fleet</option>
+            <option>Engineering (CAR/EAR)</option><option>Liability</option><option>Fidelity guarantee</option>
+          </select>
+          <p class="field-error" id="type-error" hidden></p>
+        </label>
+        <fieldset class="field full">
+          <legend>Personal or corporate <abbr class="req" title="required">*</abbr></legend>
+          <div class="choice">
+            <label><input type="radio" name="client_type" value="personal" required> Personal</label>
+            <label><input type="radio" name="client_type" value="corporate"> Corporate</label>
+          </div>
+          <p class="field-error" id="client-error" hidden></p>
+        </fieldset>
+        <label class="field" id="company-field" hidden>
+          <span>Company <abbr class="req" title="required">*</abbr></span>
+          <input id="company" name="company" autocomplete="organization" aria-describedby="company-error">
+          <p class="field-error" id="company-error" hidden></p>
+        </label>
+        <label class="field">
+          <span>Preferred time <span class="opt">(optional)</span></span>
+          <select id="preferred_time" name="preferred_time">
+            <option value="">No preference</option>
+            <option>Morning</option><option>Afternoon</option><option>Evening</option>
+          </select>
+        </label>
+        <label class="field full">
+          <span>Message <span class="opt">(optional)</span></span>
+          <textarea id="message" name="message"></textarea>
+        </label>
+        <p class="hp"><label>Leave this blank<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></p>
+        <input type="hidden" name="source_page" value="Homepage">
+        <button class="btn btn-navy" type="submit">Request a Quote</button>
+        <p class="fine">We use these details only to reply about this enquiry.</p>
+        <p class="form-status" id="form-status" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h2>SANAD</h2>
+        <p>Sanad Insurance Brokers. An independent insurance broker in Amman, established in 2011. Member of the Jordan Insurance Brokers Association.</p>
+      </div>
+      <div>
+        <h2>PERSONAL</h2>
+        <a href="#talk" data-client="personal" data-cover="Home">Home</a>
+        <a href="#talk" data-client="personal" data-cover="Medical">Medical</a>
+        <a href="#talk" data-client="personal" data-cover="Motor">Motor</a>
+        <a href="#talk" data-client="personal" data-cover="Travel">Travel</a>
+        <a href="#talk" data-client="personal" data-cover="Life">Life</a>
+      </div>
+      <div>
+        <h2>CORPORATE</h2>
+        <a href="#talk" data-client="corporate" data-cover="Property">Property</a>
+        <a href="#talk" data-client="corporate" data-cover="Marine">Marine</a>
+        <a href="#talk" data-client="corporate" data-cover="Group medical">Group medical</a>
+        <a href="#talk" data-client="corporate" data-cover="Motor fleet">Motor fleet</a>
+        <a href="#talk" data-client="corporate" data-cover="Engineering (CAR/EAR)">Engineering</a>
+        <a href="#talk" data-client="corporate" data-cover="Liability">Liability</a>
+        <a href="#talk" data-client="corporate" data-cover="Fidelity guarantee">Fidelity guarantee</a>
+      </div>
+      <div>
+        <h2>COMPANY</h2>
+        <a href="#about">About us</a>
+        <a href="#sectors">Sectors</a>
+        <a href="#claims">Claims</a>
+        <a href="#news">News and insights</a>
+        <a href="#talk">Contact</a>
+        <a href="https://wa.me/96264645002">WhatsApp</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Sanad Insurance Brokers</span>
+      <span>Privacy policy, terms, and complaints pages are not on this page.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" aria-label="Quick contact">
+  <a href="tel:+96264645002">Call</a>
+  <a href="https://wa.me/96264645002">WhatsApp</a>
+</div>
+
+<button class="chat-launcher" type="button" id="chat-open" aria-expanded="false" aria-controls="chat-panel">Chat</button>
+<div class="chat-panel" id="chat-panel" role="dialog" aria-labelledby="chat-title">
+  <header>
+    <strong id="chat-title">Chat with Sanad</strong>
+    <button type="button" id="chat-close" aria-label="Close chat">×</button>
+  </header>
+  <div class="body">
+    <p style="margin:0 0 8px">This window is not connected to an advisor.</p>
+    <p style="margin:0">Call <a href="tel:+96264645002">+962 6 464 5002</a> or use the quote form and the office will reply.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var toggle = document.querySelector(".menu-toggle");
+  var menu = document.getElementById("menu");
+  var form = document.getElementById("lead-form");
+  var chat = document.getElementById("chat-panel");
+  var chatOpen = document.getElementById("chat-open");
+  var companyWrap = document.getElementById("company-field");
+  var company = document.getElementById("company");
+  var status = document.getElementById("form-status");
+
+  function closeMenu() {
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Menu";
+  }
+  toggle.addEventListener("click", function () {
+    var open = menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.textContent = open ? "Close" : "Menu";
+    if (open) {
+      var first = menu.querySelector("a, button");
+      if (first) first.focus();
+    }
+  });
+  menu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (window.matchMedia("(max-width: 1024px)").matches) closeMenu();
+    });
+  });
+  document.querySelectorAll(".nav-link").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var li = btn.parentElement;
+      var open = li.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (menu.classList.contains("open")) { closeMenu(); toggle.focus(); }
+    if (chat.classList.contains("open")) { chat.classList.remove("open"); chatOpen.setAttribute("aria-expanded", "false"); chatOpen.focus(); }
+  });
+
+  function syncCompany() {
+    var chosen = form.querySelector('input[name="client_type"]:checked');
+    var corporate = chosen && chosen.value === "corporate";
+    companyWrap.hidden = !corporate;
+    company.required = !!corporate;
+    if (!corporate) {
+      company.value = "";
+      company.setAttribute("aria-invalid", "false");
+    }
+  }
+  form.querySelectorAll('input[name="client_type"]').forEach(function (radio) {
+    radio.addEventListener("change", syncCompany);
+  });
+
+  document.querySelectorAll("[data-cover]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      var select = document.getElementById("insurance_type");
+      var cover = link.getAttribute("data-cover");
+      var client = link.getAttribute("data-client");
+      if (cover && select) select.value = cover;
+      if (client) {
+        var radio = form.querySelector('input[name="client_type"][value="' + client + '"]');
+        if (radio) radio.checked = true;
+        syncCompany();
+      }
+    });
+  });
+
+  function setError(id, message) {
+    var el = document.getElementById(id);
+    var inputId = id.replace("-error", "");
+    var input = document.getElementById(inputId);
+    if (!el) return;
+    el.hidden = !message;
+    el.textContent = message || "";
+    if (input) input.setAttribute("aria-invalid", message ? "true" : "false");
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    status.hidden = true;
+    status.textContent = "";
+    if (form.company_website && form.company_website.value) return;
+    setError("name-error", form.name.value.trim() ? "" : "Enter your name.");
+    setError("phone-error", form.phone.value.trim() ? "" : "Enter a phone number.");
+    setError("email-error", form.email.value.trim() && form.email.checkValidity() ? "" : "Enter a valid email address.");
+    setError("type-error", form.insurance_type.value ? "" : "Choose a type of insurance.");
+    var client = form.querySelector('input[name="client_type"]:checked');
+    var clientError = document.getElementById("client-error");
+    clientError.hidden = !!client;
+    clientError.textContent = client ? "" : "Choose personal or corporate.";
+    if (client && client.value === "corporate" && !company.value.trim()) {
+      setError("company-error", "Enter the company name.");
+    } else {
+      setError("company-error", "");
+    }
+    var invalid = form.querySelector('[aria-invalid="true"], #client-error:not([hidden])');
+    if (!form.name.value.trim() || !form.phone.value.trim() || !form.email.checkValidity() || !form.insurance_type.value || !client || (client.value === "corporate" && !company.value.trim())) {
+      var first = form.querySelector('[aria-invalid="true"]') || form.querySelector('input[name="client_type"]');
+      if (first) first.focus();
+      return;
+    }
+    status.hidden = false;
+    status.textContent = "Your details were not sent. Please call +962 6 464 5002 or email info@sanadib.com.";
+  });
+
+  chatOpen.addEventListener("click", function () {
+    var open = chat.classList.toggle("open");
+    chatOpen.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) document.getElementById("chat-close").focus();
+  });
+  document.getElementById("chat-close").addEventListener("click", function () {
+    chat.classList.remove("open");
+    chatOpen.setAttribute("aria-expanded", "false");
+    chatOpen.focus();
+  });
+})();
+</script>
+</body>
+</html>
